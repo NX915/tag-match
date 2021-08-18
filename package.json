@@ -19,5 +19,8 @@
   "homepage": "https://github.com/NX915/tag-match#readme",
   "devDependencies": {
     "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
