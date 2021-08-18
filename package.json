@@ -1,0 +1,23 @@
+{
+  "name": "tag-match",
+  "version": "1.0.0",
+  "description": "Node based CLI that match records using tags",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NX915/tag-match.git"
+  },
+  "author": "Sean Ni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NX915/tag-match/issues"
+  },
+  "homepage": "https://github.com/NX915/tag-match#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
