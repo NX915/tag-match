@@ -1,4 +1,9 @@
-const { parseData, formTagsTable, matchUserTagsToJobs } = require("../data");
+const {
+  parseData,
+  formTagsTable,
+  matchUserTagsToJobs,
+  printMatches,
+} = require("../data");
 const users = [
   {
     id: 1,
@@ -96,5 +101,26 @@ describe("matchUserTagsToJobs will return an array of user id and array of jobs'
     expect(matchUserTagsToJobs(users, jobs, true, 2)).toMatchObject(
       userWithMinTwoMatchedJobs
     );
+  });
+});
+
+describe("print and display the list of matches on the console", () => {
+  test("Expect matches to be printed to console", () => {
+    console.log = jest.fn();
+    printMatches(users, jobs, userWithMinTwoMatchedJobs);
+    expect(console.log).toHaveBeenCalledWith(
+      'User 1 matched to {"id":1,"title":"Test developer","company":"Test industries","tags":["a","b","c"]}'
+    );
+    expect(console.log).toHaveBeenCalledWith(
+      'User 2 matched to {"id":1,"title":"Test developer","company":"Test industries","tags":["a","b","c"]}'
+    );
+    expect(console.log).toHaveBeenCalledWith(
+      'User 2 matched to {"id":2,"title":"Test tester","company":"Test company","tags":["c","b","d"]}'
+    );
+  });
+  test("Expect match not found printed to console if matches are empty", () => {
+    console.log = jest.fn();
+    printMatches(users, jobs, {});
+    expect(console.log).toHaveBeenCalledWith("No matches found.");
   });
 });

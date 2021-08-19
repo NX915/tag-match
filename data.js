@@ -34,6 +34,9 @@ function parseData(
       }
     });
   }
+  if (jobs.length === 0 || users.length === 0) {
+    throw new Error("Error KILx2314: user or job data missing");
+  }
   return { jobs, users };
 }
 
@@ -97,4 +100,29 @@ function matchUserTagsToJobs(users, jobs, sort = false, minMatch = 1) {
   return matchedObj;
 }
 
-module.exports = { parseData, getFiles, formTagsTable, matchUserTagsToJobs };
+/**
+ * @param {array} users - An array of objects containing at least a 'tags' property, which contain an array of strings
+ * @param {array} jobs - An array of objects containing at least a 'tags' property, which contain an array of strings
+ * @param {object} matches - Object with key being the user index and value being an array of jobs indexes
+ */
+function printMatches(users, jobs, matches) {
+  if (Object.keys(matches).length !== 0) {
+    Object.entries(matches).forEach((user) => {
+      user[1].forEach((match) => {
+        console.log(
+          `User ${users[user[0]].id} matched to ${JSON.stringify(jobs[match])}`
+        );
+      });
+    });
+  } else {
+    console.log("No matches found.");
+  }
+}
+
+module.exports = {
+  parseData,
+  getFiles,
+  formTagsTable,
+  matchUserTagsToJobs,
+  printMatches,
+};
