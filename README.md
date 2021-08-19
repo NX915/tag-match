@@ -10,7 +10,7 @@ Node based CLI that reads and match two sets of json records using their tags pr
 
 install using
 ```
-npm i @nx915/tag-match
+npm i -g @nx915/tag-match
 ```
 
 
