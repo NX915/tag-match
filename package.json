@@ -1,6 +1,6 @@
 {
   "name": "@nx915/tag-match",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node based CLI that match records using tags",
   "main": "index.js",
   "scripts": {

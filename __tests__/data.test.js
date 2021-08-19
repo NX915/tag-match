@@ -43,6 +43,10 @@ const userWithMatchedJobs = {
   0: new Set([0, 1]),
   1: new Set([0, 1, 2]),
 };
+const userWithMinTwoMatchedJobs = {
+  0: new Set([0]),
+  1: new Set([0, 1]),
+};
 
 describe("parseData expected to separate user and job data from an array", () => {
   test("Expect error if given incorrect or corrupted data", () => {
@@ -87,5 +91,10 @@ describe("matchUserTagsToJobs will return an array of user id and array of jobs'
   });
   test("Expect returned object to be correct", () => {
     expect(matchUserTagsToJobs(users, jobs)).toMatchObject(userWithMatchedJobs);
+  });
+  test("Expect returned object to be correct when passed additional minimal 2 tag match requirnment", () => {
+    expect(matchUserTagsToJobs(users, jobs, true, 2)).toMatchObject(
+      userWithMinTwoMatchedJobs
+    );
   });
 });

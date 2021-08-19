@@ -8,7 +8,7 @@ if (args.length <= 0) {
   getFiles(args).then((data) => {
     const { jobs, users } = parseData(data);
     if (jobs.length !== 0 && users.length !== 0) {
-      const userMatches = matchUserTagsToJobs(users, jobs);
+      const userMatches = matchUserTagsToJobs(users, jobs, false, 2);
       Object.entries(userMatches).forEach((user) => {
         user[1].forEach((match) => {
           console.log(
