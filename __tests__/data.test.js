@@ -1,4 +1,4 @@
-const { parseData } = require("../data");
+const { parseData, formTagsTable, matchUserTagsToJobs } = require("../data");
 const users = [
   {
     id: 1,
@@ -24,8 +24,25 @@ const jobs = [
     company: "Test company",
     tags: ["c", "b", "d"],
   },
+  {
+    id: 3,
+    title: "Third tester",
+    company: "Test incorprated",
+    tags: ["c", "d", "e"],
+  },
 ];
 const data = [...users, ...jobs];
+const jobsByTags = {
+  a: new Set([0]),
+  b: new Set([0, 1]),
+  c: new Set([0, 1, 2]),
+  d: new Set([1, 2]),
+  e: new Set([2]),
+};
+const userWithMatchedJobs = {
+  0: new Set([0, 1]),
+  1: new Set([0, 1, 2]),
+};
 
 describe("parseData expected to separate user and job data from an array", () => {
   test("Expect error if given incorrect or corrupted data", () => {
@@ -53,4 +70,14 @@ describe("parseData expected to separate user and job data from an array", () =>
   });
 });
 
-describe("formTagTable expected to form a list of unique tags and records matching those tags", () => {});
+describe("formTagsTable expected to map a list of unique tags and record indexes matching those tags", () => {
+  test("Expect returned table to be correct", () => {
+    expect(formTagsTable(jobs)).toMatchObject(jobsByTags);
+  });
+});
+
+describe("matchUserTagsToJobs will return an array of user id and array of jobs' indexes", () => {
+  test("Expect returned object to be correct", () => {
+    expect(matchUserTagsToJobs(users, jobs)).toMatchObject(userWithMatchedJobs);
+  });
+});
