@@ -78,7 +78,7 @@ function matchUserTagsToJobs(users, jobs, sort = true) {
       }
     });
     if (sort) {
-      matchedObj[i] = [...matchedObj[i]].sort((a, b) => a - b);
+      matchedObj[i] = new Set([...matchedObj[i]].sort((a, b) => a - b));
     }
   });
 

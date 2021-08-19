@@ -71,12 +71,20 @@ describe("parseData expected to separate user and job data from an array", () =>
 });
 
 describe("formTagsTable expected to map a list of unique tags and record indexes matching those tags", () => {
+  test("Expect returned table contain sets as values", () => {
+    const tagsTable = formTagsTable(jobs);
+    expect(tagsTable[Object.keys(tagsTable)[0]]).toBeInstanceOf(Set);
+  });
   test("Expect returned table to be correct", () => {
     expect(formTagsTable(jobs)).toMatchObject(jobsByTags);
   });
 });
 
 describe("matchUserTagsToJobs will return an array of user id and array of jobs' indexes", () => {
+  test("Expect returned object contain sets as values", () => {
+    const matchTable = matchUserTagsToJobs(users, jobs);
+    expect(matchTable[Object.keys(matchTable)[0]]).toBeInstanceOf(Set);
+  });
   test("Expect returned object to be correct", () => {
     expect(matchUserTagsToJobs(users, jobs)).toMatchObject(userWithMatchedJobs);
   });
