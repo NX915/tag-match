@@ -59,6 +59,7 @@ function formTagsTable(data) {
  * @param {Array} users - An array of objects containing at least a 'tags' property, which contain an array of strings
  * @param {Array} jobs - An array of objects containing at least a 'tags' property, which contain an array of strings
  * @param {boolean} sort - Optional boolean, default true, disable sorting if false.
+ * @param {number} minMatch - Optional nummber, default 1, minimal number of tags to match.
  */
 function matchUserTagsToJobs(users, jobs, sort = false, minMatch = 1) {
   const matchedObj = {};
@@ -80,13 +81,14 @@ function matchUserTagsToJobs(users, jobs, sort = false, minMatch = 1) {
         matchCounts[matchedIndex] = 0;
       }
     });
-    matchedObj[i] = new Set(
-      Object.keys(matchCounts).reduce(
-        (pre, cur) =>
-          matchCounts[cur] >= minMatch ? [...pre, Number(cur)] : pre,
-        []
-      )
+    const matchedArr = Object.keys(matchCounts).reduce(
+      (pre, cur) =>
+        matchCounts[cur] >= minMatch ? [...pre, Number(cur)] : pre,
+      []
     );
+    if (matchedArr.length !== 0) {
+      matchedObj[i] = new Set(matchedArr);
+    }
     if (sort) {
       matchedObj[i] = new Set([...matchedObj[i]].sort((a, b) => a - b));
     }
