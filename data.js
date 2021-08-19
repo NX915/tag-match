@@ -7,7 +7,7 @@ const _ = require("lodash");
 function getFiles(path) {
   return Promise.all(
     path.map(async (ele) => JSON.parse(await fs.readFile(ele, "utf-8")))
-  );
+  ).then((data) => data.reduce((pre, cur) => [...pre, ...cur]));
 }
 
 /**

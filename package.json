@@ -7,6 +7,7 @@
     "start": "node index.js",
     "test": "jest"
   },
+  "bin": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NX915/tag-match.git"
