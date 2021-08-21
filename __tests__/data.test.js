@@ -13,7 +13,7 @@ const users = [
   {
     id: 2,
     name: "Test User2",
-    tags: ["b", "c"],
+    tags: ["b", "c", "f"],
   },
 ];
 const jobs = [
@@ -89,7 +89,7 @@ describe("formTagsTable expected to map a list of unique tags and record indexes
   });
 });
 
-describe("matchUserTagsToJobs will return an array of user id and array of jobs' indexes", () => {
+describe("matchUserTagsToJobs will return an array of user indexes and matching jobs' indexes in an array", () => {
   test("Expect returned object contain sets as values", () => {
     const matchTable = matchUserTagsToJobs(users, jobs);
     expect(matchTable[Object.keys(matchTable)[0]]).toBeInstanceOf(Set);

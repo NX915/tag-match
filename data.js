@@ -80,8 +80,6 @@ function matchUserTagsToJobs(users, jobs, sort = false, minMatch = 1) {
             matchCounts[matchedIndex] = 1;
           }
         });
-      } else {
-        matchCounts[matchedIndex] = 0;
       }
     });
     const matchedArr = Object.keys(matchCounts).reduce(
